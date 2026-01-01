@@ -7,13 +7,14 @@ import com.typesafe.scalalogging.LazyLogging
 import ee.zone.web.protokollitaja.backend.entities._
 import ee.zone.web.protokollitaja.backend.metrics.Metrics
 import org.bson.codecs.configuration.CodecRegistries.{fromProviders, fromRegistries}
+import org.mongodb.scala.MongoClient.DEFAULT_CODEC_REGISTRY
 import org.mongodb.scala._
 import org.mongodb.scala.bson.ObjectId
-import org.mongodb.scala.bson.codecs.DEFAULT_CODEC_REGISTRY
 import org.mongodb.scala.bson.codecs.Macros._
 import org.mongodb.scala.model.Filters._
 import org.mongodb.scala.model.Sorts._
 import org.mongodb.scala.model.Updates._
+import org.mongodb.scala.result.InsertOneResult
 
 import scala.concurrent.duration._
 import scala.concurrent.{Await, ExecutionContext, Future}
@@ -186,7 +187,7 @@ class Persistence(config: Config)(implicit ec: ExecutionContext) extends Persist
     }
   }
 
-  def saveCompetition(newCompetition: Competition): Future[Completed] = {
+  def saveCompetition(newCompetition: Competition): Future[InsertOneResult] = {
     getCompetition(newCompetition._id).flatMap {
 
       case Some(_) =>
@@ -236,7 +237,7 @@ class Persistence(config: Config)(implicit ec: ExecutionContext) extends Persist
     }
   }
 
-  def saveUser(newUser: User): Future[Completed] = {
+  def saveUser(newUser: User): Future[InsertOneResult] = {
     // If same username exists, do not save
     usersCollection.find(equal("username", newUser.username)).toFuture().flatMap {
       case Seq() =>
@@ -267,7 +268,7 @@ class Persistence(config: Config)(implicit ec: ExecutionContext) extends Persist
   //    usersCollection.find(equal("username", username)).headOption()
   //  }
 
-  def cleanUpDatabase(): Completed = { // Used in unit tests
+  def cleanUpDatabase(): Unit = { // Used in unit tests
     Await.result(database.drop().toFuture(), 1.second)
   }
 }

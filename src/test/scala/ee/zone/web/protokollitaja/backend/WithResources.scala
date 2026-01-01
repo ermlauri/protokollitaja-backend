@@ -1,12 +1,12 @@
 package ee.zone.web.protokollitaja.backend
 
-import com.mongodb.client.result.UpdateResult
+import com.mongodb.client.result.{InsertOneResult, UpdateResult}
 import ee.zone.web.protokollitaja.backend.entities._
 import ee.zone.web.protokollitaja.backend.persistence.PersistenceBase
 import org.json4s.jackson.JsonMethods.parse
 import org.json4s.mongo.ObjectIdSerializer
 import org.json4s.{DefaultFormats, Formats, JValue}
-import org.mongodb.scala.Completed
+import org.mongodb.scala.result.InsertOneResult
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.io.Source
@@ -66,13 +66,13 @@ trait WithResources {
 
     def changeUserPassword(username: String, oldPassword: String, newPassword: String): Future[UpdateResult] = ???
 
-    def saveCompetition(newCompetition: Competition): Future[Completed] = Future(Completed())
+    def saveCompetition(newCompetition: Competition): Future[InsertOneResult] = Future(InsertOneResult.unacknowledged())
 
     def updateCompetition(newCompetition: Competition): Future[Competition] = Future(newCompetition)
 
     def saveCompetitorsData(listName: String, competitors: Seq[DBCompetitor]): Future[Boolean] = Future.successful(true)
 
-    def saveUser(newUser: User): Future[Completed] = ???
+    def saveUser(newUser: User): Future[InsertOneResult] = ???
 
     def getPasswordAndAccessLevel(username: String): Future[Option[(String, Int)]] = {
       username match {

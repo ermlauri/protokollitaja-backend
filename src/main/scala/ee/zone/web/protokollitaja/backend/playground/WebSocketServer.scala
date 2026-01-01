@@ -1,13 +1,13 @@
 package ee.zone.web.protokollitaja.backend.playground
 
-import akka.actor.{Actor, ActorRef, ActorSystem, Props}
-import akka.http.scaladsl.Http
-import akka.http.scaladsl.model.ws.Message
-import akka.http.scaladsl.server.Directives._
-import akka.http.scaladsl.server.Route
-import akka.pattern.ask
-import akka.stream.ActorMaterializer
-import akka.stream.scaladsl.Flow
+import org.apache.pekko.actor.{Actor, ActorRef, ActorSystem, Props}
+import org.apache.pekko.http.scaladsl.Http
+import org.apache.pekko.http.scaladsl.model.ws.Message
+import org.apache.pekko.http.scaladsl.server.Directives._
+import org.apache.pekko.http.scaladsl.server.Route
+import org.apache.pekko.pattern.ask
+import org.apache.pekko.stream.ActorMaterializer
+import org.apache.pekko.stream.scaladsl.Flow
 
 import scala.concurrent.ExecutionContextExecutor
 import scala.concurrent.duration._

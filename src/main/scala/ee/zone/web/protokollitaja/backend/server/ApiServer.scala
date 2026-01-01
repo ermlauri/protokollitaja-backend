@@ -1,12 +1,12 @@
 package ee.zone.web.protokollitaja.backend.server
 
-import akka.actor.typed.scaladsl.{AbstractBehavior, ActorContext, Behaviors}
-import akka.actor.typed.{Behavior, Scheduler}
-import akka.http.scaladsl.model._
-import akka.http.scaladsl.server.{Directives, RequestContext, Route, RouteResult}
-import akka.stream.Materializer
-import akka.stream.scaladsl.Sink
-import akka.util.ByteString
+import org.apache.pekko.actor.typed.scaladsl.{AbstractBehavior, ActorContext, Behaviors}
+import org.apache.pekko.actor.typed.{Behavior, Scheduler}
+import org.apache.pekko.http.scaladsl.model._
+import org.apache.pekko.http.scaladsl.server.{Directives, RequestContext, Route, RouteResult}
+import org.apache.pekko.stream.Materializer
+import org.apache.pekko.stream.scaladsl.Sink
+import org.apache.pekko.util.ByteString
 import com.typesafe.config.Config
 import com.typesafe.scalalogging.LazyLogging
 import ee.zone.web.protokollitaja.backend.auth.Authenticator
@@ -198,13 +198,28 @@ class ApiServer(context: ActorContext[BackendMsg], persistence: PersistenceBase,
       }
     }
 
+  // old Webzone redirects to https://protokollitaja.eu/protokollitaja/inf20150118
+  private val protokollitajaLatestVersion =
+    get {
+      pathPrefix("protokollitaja") {
+        path("latestVersion" | "inf20150118") {
+          pathEndOrSingleSlash {
+              complete("<!--proto;0.9.3;Protokollitaja.exe\n.no-ip.org-->")
+            onSuccess(getProtokollitajaVersion()) { versionString =>
+              complete(versionString)
+            }
+          }
+        }
+      }
+    }
+
   val route: Route =
     corsHandler(
       pathPrefix("api") {
         pathPrefix("v1") {
-          competitions ~ events ~ results ~ competitorsDataVersion ~ competitorsData
+          competitions ~ events ~ results ~ competitorsDataVersion ~ competitorsData ~ protokollitajaLatestVersion
         }
-      }
+      } ~ protokollitajaLatestVersion
     )
 
   private def extractData(entity: RequestEntity, requestContext: RequestContext): Future[Option[JValue]] = {
@@ -265,4 +280,7 @@ class ApiServer(context: ActorContext[BackendMsg], persistence: PersistenceBase,
         requestContext.complete(StatusCodes.BadRequest -> e.getMessage)
     }
   }.flatten
+
+  // TODO get the version from GitHub tags
+  private def getProtokollitajaVersion(): Future[String] = Future.successful("<!--proto;0.9.3;Protokollitaja.exe\n-->")
 }

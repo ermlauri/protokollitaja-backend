@@ -1,10 +1,10 @@
 package ee.zone.web.protokollitaja.backend.server
 
-import akka.actor
-import akka.actor.typed.scaladsl.Behaviors
-import akka.actor.typed.scaladsl.adapter._
-import akka.actor.typed.{ActorSystem, Behavior, DispatcherSelector, Terminated}
-import akka.http.scaladsl.{ConnectionContext, Http}
+import org.apache.pekko.actor
+import org.apache.pekko.actor.typed.scaladsl.Behaviors
+import org.apache.pekko.actor.typed.scaladsl.adapter._
+import org.apache.pekko.actor.typed.{ActorSystem, Behavior, DispatcherSelector, Terminated}
+import org.apache.pekko.http.scaladsl.{ConnectionContext, Http}
 import com.typesafe.config.ConfigFactory
 import com.typesafe.scalalogging.LazyLogging
 import ee.zone.web.protokollitaja.backend.persistence.Persistence

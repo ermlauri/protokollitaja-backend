@@ -1,15 +1,15 @@
 package ee.zone.web.protokollitaja.backend
 
-import akka.actor.testkit.typed.scaladsl.ActorTestKit
-import akka.actor.typed.DispatcherSelector
-import akka.actor.typed.scaladsl.adapter._
-import akka.http.scaladsl.Http
-import akka.http.scaladsl.marshalling.Marshal
-import akka.http.scaladsl.model.headers.BasicHttpCredentials
-import akka.http.scaladsl.model.{HttpMethods, HttpRequest, MessageEntity, StatusCodes}
-import akka.http.scaladsl.unmarshalling.Unmarshal
+import org.apache.pekko.actor.testkit.typed.scaladsl.ActorTestKit
+import org.apache.pekko.actor.typed.DispatcherSelector
+import org.apache.pekko.actor.typed.scaladsl.adapter._
+import org.apache.pekko.http.scaladsl.Http
+import org.apache.pekko.http.scaladsl.marshalling.Marshal
+import org.apache.pekko.http.scaladsl.model.headers.BasicHttpCredentials
+import org.apache.pekko.http.scaladsl.model.{HttpMethods, HttpRequest, MessageEntity, StatusCodes}
+import org.apache.pekko.http.scaladsl.unmarshalling.Unmarshal
 import com.typesafe.config.ConfigFactory
-import com.typesafe.sslconfig.akka.AkkaSSLConfig
+import com.typesafe.sslconfig.pekko.PekkoSSLConfig
 import com.typesafe.sslconfig.ssl.{TrustManagerConfig, TrustStoreConfig}
 import ee.zone.web.protokollitaja.backend.entities.{Competition, Competitor, Event, Team, User}
 import ee.zone.web.protokollitaja.backend.persistence.Persistence
@@ -40,7 +40,7 @@ class ServerMainIntegrationTest extends AnyWordSpec with Matchers with BeforeAnd
   val trustStoreConfig = TrustStoreConfig(None, Some("./src/test/resources/localhost.jks")).withStoreType("JKS")
   val trustManagerConfig = TrustManagerConfig().withTrustStoreConfigs(List(trustStoreConfig))
 
-  val testSslConfig = AkkaSSLConfig().mapSettings(s => s.withLoose(s.loose
+  val testSslConfig = PekkoSSLConfig().mapSettings(s => s.withLoose(s.loose
     .withAcceptAnyCertificate(true)
     .withDisableHostnameVerification(true)
   ).withTrustManagerConfig(trustManagerConfig))

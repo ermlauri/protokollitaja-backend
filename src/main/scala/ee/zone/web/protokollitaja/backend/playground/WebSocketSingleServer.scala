@@ -1,15 +1,15 @@
 package ee.zone.web.protokollitaja.backend.playground
 
-import akka.actor.{Actor, ActorRef, ActorSystem, Props}
-import akka.http.scaladsl.Http
-import akka.http.scaladsl.model.HttpMethods.GET
-import akka.http.scaladsl.model.ws.{BinaryMessage, Message, TextMessage, UpgradeToWebSocket}
-import akka.http.scaladsl.model.{HttpRequest, HttpResponse, Uri}
-import akka.http.scaladsl.server.Directives._
-import akka.http.scaladsl.server.Route
-import akka.pattern.ask
-import akka.stream.scaladsl.{Flow, GraphDSL, Sink, Source}
-import akka.stream.{ActorMaterializer, SourceShape}
+import org.apache.pekko.actor.{Actor, ActorRef, ActorSystem, Props}
+import org.apache.pekko.http.scaladsl.Http
+import org.apache.pekko.http.scaladsl.model.HttpMethods.GET
+import org.apache.pekko.http.scaladsl.model.ws.{BinaryMessage, Message, TextMessage, UpgradeToWebSocket}
+import org.apache.pekko.http.scaladsl.model.{HttpRequest, HttpResponse, Uri}
+import org.apache.pekko.http.scaladsl.server.Directives._
+import org.apache.pekko.http.scaladsl.server.Route
+import org.apache.pekko.pattern.ask
+import org.apache.pekko.stream.scaladsl.{Flow, GraphDSL, Sink, Source}
+import org.apache.pekko.stream.{ActorMaterializer, SourceShape}
 
 import scala.concurrent.ExecutionContextExecutor
 import scala.concurrent.duration._

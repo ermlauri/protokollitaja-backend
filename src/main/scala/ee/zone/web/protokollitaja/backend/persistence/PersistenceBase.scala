@@ -3,6 +3,7 @@ package ee.zone.web.protokollitaja.backend.persistence
 import com.mongodb.client.result.UpdateResult
 import ee.zone.web.protokollitaja.backend.entities._
 import org.mongodb.scala._
+import org.mongodb.scala.result.InsertOneResult
 
 import scala.concurrent.Future
 
@@ -24,13 +25,13 @@ abstract class PersistenceBase {
 
   def changeUserPassword(username: String, oldPassword: String, newPassword: String): Future[UpdateResult]
 
-  def saveCompetition(newCompetition: Competition): Future[Completed]
+  def saveCompetition(newCompetition: Competition): Future[InsertOneResult]
 
   def updateCompetition(newCompetition: Competition): Future[Competition]
 
   def saveCompetitorsData(listName: String, competitors: Seq[DBCompetitor]): Future[Boolean]
 
-  def saveUser(newUser: User): Future[Completed]
+  def saveUser(newUser: User): Future[InsertOneResult]
 
   def getPasswordAndAccessLevel(username: String): Future[Option[(String, Int)]]
 

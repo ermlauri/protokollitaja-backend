@@ -1,9 +1,9 @@
 package ee.zone.web.protokollitaja.backend.playground
 
-import akka.actor.Actor
-import akka.http.scaladsl.model.ws.{BinaryMessage, Message, TextMessage}
-import akka.stream.scaladsl.{Flow, GraphDSL, Keep, Sink, Source}
-import akka.stream.{ActorMaterializer, FlowShape, OverflowStrategy}
+import org.apache.pekko.actor.Actor
+import org.apache.pekko.http.scaladsl.model.ws.{BinaryMessage, Message, TextMessage}
+import org.apache.pekko.stream.scaladsl.{Flow, GraphDSL, Keep, Sink, Source}
+import org.apache.pekko.stream.{ActorMaterializer, FlowShape, OverflowStrategy}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future

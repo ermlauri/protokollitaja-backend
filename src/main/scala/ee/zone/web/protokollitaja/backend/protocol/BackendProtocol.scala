@@ -1,7 +1,7 @@
 package ee.zone.web.protokollitaja.backend.protocol
 
-import akka.actor.typed.{ActorRef, ActorSystem}
-import akka.http.scaladsl.server.Route
+import org.apache.pekko.actor.typed.{ActorRef, ActorSystem}
+import org.apache.pekko.http.scaladsl.server.Route
 
 object BackendProtocol {
 

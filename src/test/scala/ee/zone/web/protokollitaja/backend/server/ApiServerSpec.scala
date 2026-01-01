@@ -1,10 +1,10 @@
 package ee.zone.web.protokollitaja.backend.server
 
-import akka.actor.testkit.typed.scaladsl.ActorTestKit
-import akka.http.scaladsl.marshalling.Marshal
-import akka.http.scaladsl.model.headers.BasicHttpCredentials
-import akka.http.scaladsl.model.{MessageEntity, StatusCodes}
-import akka.http.scaladsl.testkit.ScalatestRouteTest
+import org.apache.pekko.actor.testkit.typed.scaladsl.ActorTestKit
+import org.apache.pekko.http.scaladsl.marshalling.Marshal
+import org.apache.pekko.http.scaladsl.model.headers.BasicHttpCredentials
+import org.apache.pekko.http.scaladsl.model.{MessageEntity, StatusCodes}
+import org.apache.pekko.http.scaladsl.testkit.ScalatestRouteTest
 import com.typesafe.config.ConfigFactory
 import ee.zone.web.protokollitaja.backend.WithResources
 import ee.zone.web.protokollitaja.backend.entities.{CompetitionHeader, Competitor, DBCompetitor, EventHeader}

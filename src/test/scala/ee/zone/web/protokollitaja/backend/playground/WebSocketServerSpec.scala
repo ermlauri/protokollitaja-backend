@@ -1,10 +1,10 @@
 package ee.zone.web.protokollitaja.backend.playground
 
-import akka.actor.Props
-import akka.http.scaladsl.Http
-import akka.http.scaladsl.model.StatusCodes
-import akka.http.scaladsl.model.ws.WebSocketRequest
-import akka.http.scaladsl.testkit.{ScalatestRouteTest, WSProbe}
+import org.apache.pekko.actor.Props
+import org.apache.pekko.http.scaladsl.Http
+import org.apache.pekko.http.scaladsl.model.StatusCodes
+import org.apache.pekko.http.scaladsl.model.ws.WebSocketRequest
+import org.apache.pekko.http.scaladsl.testkit.{ScalatestRouteTest, WSProbe}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

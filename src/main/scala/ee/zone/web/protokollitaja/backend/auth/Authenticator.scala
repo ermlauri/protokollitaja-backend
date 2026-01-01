@@ -1,8 +1,8 @@
 package ee.zone.web.protokollitaja.backend.auth
 
-import akka.http.scaladsl.model.headers.{BasicHttpCredentials, HttpChallenges}
-import akka.http.scaladsl.server.AuthenticationFailedRejection.{CredentialsMissing, CredentialsRejected}
-import akka.http.scaladsl.server.{AuthenticationFailedRejection, Directive1, Directives}
+import org.apache.pekko.http.scaladsl.model.headers.{BasicHttpCredentials, HttpChallenges}
+import org.apache.pekko.http.scaladsl.server.AuthenticationFailedRejection.{CredentialsMissing, CredentialsRejected}
+import org.apache.pekko.http.scaladsl.server.{AuthenticationFailedRejection, Directive1, Directives}
 import com.github.t3hnar.bcrypt._
 import com.typesafe.scalalogging.LazyLogging
 import ee.zone.web.protokollitaja.backend.persistence.PersistenceBase

@@ -1,6 +1,6 @@
 package ee.zone.web.protokollitaja.backend.playground
 
-import akka.http.scaladsl.testkit.{ScalatestRouteTest, WSProbe}
+import org.apache.pekko.http.scaladsl.testkit.{ScalatestRouteTest, WSProbe}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

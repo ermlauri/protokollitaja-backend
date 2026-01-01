@@ -1,8 +1,8 @@
 package ee.zone.web.protokollitaja.backend.playground
 
-import akka.actor.{ActorSystem, Props}
-import akka.stream.ActorMaterializer
-import akka.pattern.ask
+import org.apache.pekko.actor.{ActorSystem, Props}
+import org.apache.pekko.stream.ActorMaterializer
+import org.apache.pekko.pattern.ask
 
 import scala.concurrent.ExecutionContextExecutor
 import scala.io.StdIn
