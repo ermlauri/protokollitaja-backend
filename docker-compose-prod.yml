@@ -1,10 +1,22 @@
 services:
+  client:
+    stdin_open: true
+    image: protokollitaja-web-client
+    container_name: protokollitaja-web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /data:/data
+    networks:
+      - backend
+
   db:
-    image: mongo
+    image: mongo:8.2.3
     restart: always
     container_name: protokollitaja-mongo
     volumes:
-      - mongo-data:/data/dbex
+      - mongo-data:/data/db
       - mongo-configdb:/data/configdb
       - /data/protokollitaja-backup:/backup
     environment:
